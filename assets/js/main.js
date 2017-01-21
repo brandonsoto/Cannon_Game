@@ -31,14 +31,13 @@ $(function () {
         var x           = 0;
         var y           = $(window).height();
 
-        // TODO: Use Velocity.js for animation?
         var cannon_ball = $( '<div/>', {class: 'cannon-ball'}).appendTo(main_container);
-        cannon_ball.animate({
+        cannon_ball.velocity({
            fontSize: 0
         },{
             duration: 5000,
             easing: "swing",
-            step: function(){
+            progress: function(){
                 time = time + .15;
                 x = (v_x0*time);
                 y = (((v_y0*time)) - (.5*gravity*(Math.pow(time, 2))));
