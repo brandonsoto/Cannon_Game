@@ -22,9 +22,7 @@ $(function () {
     var gravity     = 9.81;
 
     function fire_cannon(fire_event) {
-        var cannon_ball = $('.cannon-ball');
-        var div = $("<div />");
-        div.attr({class: 'cannon-ball'});
+        var cannon_ball_div = '<div class="cannon-ball"></div>';
 
         var event_x     = fire_event.pageX;
         var event_y     = $(window).height() - fire_event.pageY;
@@ -35,8 +33,8 @@ $(function () {
         var x           = 0;
         var y           = $(window).height();
 
-        div.css({top: y, left: x}); // TODO: Why am I having to hide a random div behind the cannon?
-        main_container.append(div);
+        main_container.append(cannon_ball_div);
+        var cannon_ball = $('.cannon-ball');
 
         // TODO: Use Velocity.js for animation?
         cannon_ball.css({ fontSize: 0 }).animate({
@@ -55,7 +53,6 @@ $(function () {
                 $(this).remove();
             }
         });
-        main_container.removeClass(div);
     }
 
     // returns theta in radians
