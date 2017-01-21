@@ -22,8 +22,6 @@ $(function () {
     var gravity     = 9.81;
 
     function fire_cannon(fire_event) {
-        var cannon_ball_div = '<div class="cannon-ball"></div>';
-
         var event_x     = fire_event.pageX;
         var event_y     = $(window).height() - fire_event.pageY;
         var radians     = Math.atan2( event_y, event_x );
@@ -33,10 +31,8 @@ $(function () {
         var x           = 0;
         var y           = $(window).height();
 
-        main_container.append(cannon_ball_div);
-        var cannon_ball = $('.cannon-ball');
-
         // TODO: Use Velocity.js for animation?
+        var cannon_ball = $( '<div/>', {class: 'cannon-ball'}).appendTo(main_container);
         cannon_ball.animate({
            fontSize: 0
         },{
