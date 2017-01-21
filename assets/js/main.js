@@ -37,8 +37,8 @@ $(function () {
         var cannon_ball = $('.cannon-ball');
 
         // TODO: Use Velocity.js for animation?
-        cannon_ball.css({ fontSize: 0 }).animate({
-            fontSize: 45
+        cannon_ball.animate({
+           fontSize: 0
         },{
             duration: 5000,
             easing: "swing",
