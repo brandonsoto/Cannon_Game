@@ -2,7 +2,7 @@ $(function () {
     'use strict'; // Start of use strict
 
     var main_container = $('#main-container');
-    var cannon = $('.cannon');
+    var cannon = $('.cannon').hide();
 
     // FIXME: should only show elements after loading is finished
     // FIXME: Sync cannon barrel and cannon ball initial starting point
