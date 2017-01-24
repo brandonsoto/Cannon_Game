@@ -29,4 +29,10 @@ html {
   margin-top: 125px;
   z-index: 2; }
 
+.target {
+  background-color: darkred;
+  position: absolute;
+  width: 25px;
+  height: 150px; }
+
 /*# sourceMappingURL=main.css.map */
