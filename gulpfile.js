@@ -89,7 +89,7 @@ gulp.task('sass-lint-verbose', function() {
  * to standard output.
  */
 gulp.task('js-lint', function() {
-    return gulp.src(['assets/js/**/*.js', '!node_modules/**'])
+    return gulp.src(['assets/js/**/*.js', '!node_modules/**', '!assets/js/**/*.min.js'])
         .pipe(eslint('.eslintrc'))
         .pipe(eslint.format())
         .pipe(eslint.failOnError());
