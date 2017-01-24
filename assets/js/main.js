@@ -14,12 +14,15 @@ $(function () {
                         'top': ($(window).height() - cannon.width())});
     cannon.show();
 
+    var target = $( '<div/>', {class: 'target'}).appendTo(main_container);
+
     var center_x    = 0;
     var center_y    = 0;
     var v_0         = 200;  // arbitrary initial velocity
     var theta       = 0;    // radians
     var degrees     = 0;
     var gravity     = 9.81;
+    var score       = 0;
 
     function fire_cannon(fire_event) {
         var event_x     = fire_event.pageX;
@@ -30,12 +33,13 @@ $(function () {
         var v_y0        = v_0 * Math.sin(radians);
         var x           = 0;
         var y           = $(window).height();
+        var target_is_hit = false;
 
         var cannon_ball = $( '<div/>', {class: 'cannon-ball'}).appendTo(main_container);
         cannon_ball.velocity({
            fontSize: 0
         },{
-            duration: 5000,
+            duration: 2000,
             easing: "swing",
             progress: function(){
                 time = time + .15;
@@ -43,8 +47,24 @@ $(function () {
                 y = (((v_y0*time)) - (.5*gravity*(Math.pow(time, 2))));
                 // Forgive the magic number for the offset
                 $(this).css({ left: x - 100, top: $(window).height() - y });
+                var hit_target = $(this).collision('.target');
+                if ( hit_target !== 0 ) {
+                    if ( !target_is_hit ) { // TODO: why is this var not working as expected?
+                        ++score;
+                    }
+                    target_is_hit = true;
+                    hit_target.velocity({rotateX: '360deg'})
+                        .velocity("fadeOut")
+                        .velocity({display: 'none'});
+                }
+
             },
             complete: function() {
+                if ( target_is_hit ) {
+                    $('.score').text(score);
+                    $('.target').remove();
+                    $( '<div/>', {class: 'target'}).appendTo(main_container).hide().velocity("fadeIn");
+                }
                 $(this).remove();
             }
         });
