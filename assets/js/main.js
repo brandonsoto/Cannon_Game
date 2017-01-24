@@ -7,6 +7,7 @@ $(function () {
     // FIXME: should only show elements after loading is finished
     // FIXME: Sync cannon barrel and cannon ball initial starting point
 
+    cannon.css({'transform-origin': 'left'});
     cannon.css({'transform' : 'rotate(-45deg)'});
     cannon.css({'position': 'absolute',
                         'left': '0',

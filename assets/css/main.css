@@ -4,9 +4,6 @@ html {
   width: 100%;
   overflow: hidden;
   cursor: default; }
-  body::-moz-selection,
-  html::-moz-selection {
-    cursor: default; }
   body::selection,
   html::selection {
     cursor: default; }
@@ -20,12 +17,16 @@ html {
   z-index: 1; }
 
 .cannon {
-  background-image: url("../img/cannon.png");
-  padding-left: 120px;
-  width: 512px;
-  height: 512px;
-  -webkit-transform-origin: 50% 85%;
-          transform-origin: 50% 85%;
+  background-color: darkslategray;
+  border-right: 10px orange solid;
+  border-radius: 50% 0 0 50%;
+  cursor: default;
+  display: none;
+  position: absolute;
+  width: 300px;
+  height: 200px;
+  margin-top: 200px;
+  margin-bottom: 100px;
   z-index: 2; }
 
-/*# sourceMappingURL=data:application/json;charset=utf8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoibWFpbi5jc3MiLCJzb3VyY2VzIjpbIi9hc3NldHMvY3NzL21haW4uc2FzcyJdLCJzb3VyY2VzQ29udGVudCI6WyJib2R5LFxuaHRtbCB7XG4gIGhlaWdodDogMTAwJTtcbiAgd2lkdGg6IDEwMCU7XG4gIG92ZXJmbG93OiBoaWRkZW47XG4gIGN1cnNvcjogZGVmYXVsdDtcblxuICAmOjpzZWxlY3Rpb24ge1xuICAgIGN1cnNvcjogZGVmYXVsdDsgfSB9XG5cbi5jYW5ub24tYmFsbCB7XG4gIHBvc2l0aW9uOiBhYnNvbHV0ZTtcbiAgYm9yZGVyLXJhZGl1czogNTAlO1xuICBiYWNrZ3JvdW5kLWNvbG9yOiBibGFjaztcbiAgd2lkdGg6IDEwMHB4O1xuICBoZWlnaHQ6IDEwMHB4O1xuICB6LWluZGV4OiAxOyB9XG5cbi5jYW5ub24ge1xuICBiYWNrZ3JvdW5kLWltYWdlOiB1cmwoJy4uL2ltZy9jYW5ub24ucG5nJyk7XG4gIHBhZGRpbmctbGVmdDogMTIwcHg7XG4gIHdpZHRoOiA1MTJweDtcbiAgaGVpZ2h0OiA1MTJweDtcbiAgdHJhbnNmb3JtLW9yaWdpbjogNTAlIDg1JTtcbiAgei1pbmRleDogMjsgfVxuIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBLEFBQUEsSUFBSTtBQUNKLEFBQUEsSUFBSSxDQUFDO0VBQ0gsTUFBTSxFQUFFLElBQUk7RUFDWixLQUFLLEVBQUUsSUFBSTtFQUNYLFFBQVEsRUFBRSxNQUFNO0VBQ2hCLE1BQU0sRUFBRSxPQUFPLEdBR1E7RUFSekIsQUFPRSxJQVBFLEFBT0gsV0FBYTtFQU5kLEFBTUUsSUFORSxBQU1ILFdBQWEsQ0FBQztJQUNYLE1BQU0sRUFBRSxPQUFPLEdBQUk7O0FBRXZCLEFBQUEsWUFBWSxDQUFDO0VBQ1gsUUFBUSxFQUFFLFFBQVE7RUFDbEIsYUFBYSxFQUFFLEdBQUc7RUFDbEIsZ0JBQWdCLEVBQUUsS0FBSztFQUN2QixLQUFLLEVBQUUsS0FBSztFQUNaLE1BQU0sRUFBRSxLQUFLO0VBQ2IsT0FBTyxFQUFFLENBQUMsR0FBSTs7QUFFaEIsQUFBQSxPQUFPLENBQUM7RUFDTixnQkFBZ0IsRUFBRSx3QkFBd0I7RUFDMUMsWUFBWSxFQUFFLEtBQUs7RUFDbkIsS0FBSyxFQUFFLEtBQUs7RUFDWixNQUFNLEVBQUUsS0FBSztFQUNiLGdCQUFnQixFQUFFLE9BQU87RUFDekIsT0FBTyxFQUFFLENBQUMsR0FBSSJ9 */
+/*# sourceMappingURL=main.css.map */
