@@ -15,7 +15,7 @@ sudo apt-get install npm
 sudo apt-get install ruby-dev
 sudo npm install -g gulp
 
-cd <project directory>
+cd project-directory
 
 # install local project packages
 npm install
@@ -28,3 +28,4 @@ gulp dev
 ## Authors
 - Matt Moore
 - Brandon Soto
+- Josh Rueschenberg
