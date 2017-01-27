@@ -63,7 +63,7 @@ $(function () {
                 if ( target_is_hit ) {
                     $('.score').text(score);
                     $('.target').remove();
-                    $( '<div/>', {class: 'target'}).appendTo(main_container).hide().velocity("fadeIn");
+                    $( '<div/>', {class: 'target'}).appendTo(main_container);
                 }
                 $(this).remove();
             }
@@ -97,24 +97,18 @@ $(function () {
             + ' ( clientX, clientY ) : ' + clientCoords);
     }
 
-    // only moves the box when the mouse is held down
-    $('html').mousemove(function () {
-        $(document).mousemove(mousemoved);
-    }).mouseup(function () {
-        $(document).unbind();
-    });
 
 
-    // disables scrolling by arrow keys
+    // disables scrolling by arrow keys and page up/down keys
     // TODO: comment this section out when debugging cannon balls
     // TODO: also comment out body & html sections in main.sass (lines 4-9)
-    window.addEventListener("keydown", function(e) {
-        //  space, page up, page down and arrow keys:
+    $(window).keydown(function(e) {
         if([32, 33, 34, 37, 38, 39, 40].indexOf(e.keyCode) > -1) {
             e.preventDefault();
         }
     }, false);
 
-    document.addEventListener('click', fire_cannon );
+    $(document).click(fire_cannon);
+    $(document).mousemove(mousemoved);
     $.mobile.loading().hide();
 }); // end of document ready
