@@ -23,6 +23,7 @@ $(function () {
     var degrees     = 0;
     var gravity     = 9.81;
     var score       = 0;
+    var target_is_hit = false;
 
     function fire_cannon(fire_event) {
         var event_x     = fire_event.pageX;
@@ -33,7 +34,6 @@ $(function () {
         var v_y0        = v_0 * Math.sin(radians);
         var x           = 0;
         var y           = $(window).height();
-        var target_is_hit = false;
 
         var cannon_ball = $( '<div/>', {class: 'cannon-ball'}).appendTo(main_container);
         cannon_ball.velocity({
@@ -48,11 +48,10 @@ $(function () {
                 // Forgive the magic number for the offset
                 $(this).css({ left: x - 100, top: $(window).height() - y });
                 var hit_target = $(this).collision('.target');
-                if ( hit_target !== 0 ) {
-                    if ( !target_is_hit ) { // TODO: why is this var not working as expected?
-                        ++score;
-                    }
+                if ( hit_target.length > 0 && !target_is_hit ) {
                     target_is_hit = true;
+                    ++score;
+                    $('.score').text(score);
                     hit_target.velocity({rotateX: '360deg'})
                         .velocity("fadeOut")
                         .velocity({display: 'none'});
@@ -61,9 +60,9 @@ $(function () {
             },
             complete: function() {
                 if ( target_is_hit ) {
-                    $('.score').text(score);
                     $('.target').remove();
-                    $( '<div/>', {class: 'target'}).appendTo(main_container);
+                    $('<div/>', {class:'target'}).appendTo(main_container);
+                    target_is_hit = false;
                 }
                 $(this).remove();
             }
@@ -96,7 +95,6 @@ $(function () {
         $('#coords').text('( pageX, pageY ) : ' + pageCoords
             + ' ( clientX, clientY ) : ' + clientCoords);
     }
-
 
 
     // disables scrolling by arrow keys and page up/down keys
