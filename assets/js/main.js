@@ -10,8 +10,7 @@ $(function () {
     cannon.css({'transform-origin': 'left'});
     cannon.css({'transform' : 'rotate(-45deg)'});
     cannon.css({'position': 'absolute',
-                        'left': '0',
-                        'top': ($(window).height() - cannon.width())});
+                        'left': '0', 'top': ($(window).height() - cannon.width())});
     cannon.show();
 
     var target = $( '<div/>', {class: 'target'}).appendTo(main_container);
@@ -90,10 +89,6 @@ $(function () {
         degrees = degree;
         rotate_cannon(degree);
         theta = radians;
-        var pageCoords = event.pageX + ', ' + event.pageY;
-        var clientCoords = event.clientX + ', ' + event.clientY;
-        $('#coords').text('( pageX, pageY ) : ' + pageCoords
-            + ' ( clientX, clientY ) : ' + clientCoords);
     }
 
 
