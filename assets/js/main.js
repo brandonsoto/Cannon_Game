@@ -14,6 +14,7 @@ $(function () {
     cannon.show();
 
     var target = $( '<div/>', {class: 'target'}).appendTo(main_container);
+    target.velocity({ top: '800px' }, { duration: 2000, loop: true})
 
     var center_x    = 0;
     var center_y    = 0;
@@ -51,16 +52,17 @@ $(function () {
                     target_is_hit = true;
                     ++score;
                     $('.score').text(score);
-                    hit_target.velocity({rotateX: '360deg'})
-                        .velocity("fadeOut")
-                        .velocity({display: 'none'});
+                    hit_target.velocity('stop')
+                        .velocity({rotateX: '360deg'})
+                        .velocity("fadeOut");
                 }
 
             },
             complete: function() {
                 if ( target_is_hit ) {
                     $('.target').remove();
-                    $('<div/>', {class:'target'}).appendTo(main_container);
+                    var target = $('<div/>', {class:'target'}).appendTo(main_container);
+                    target.velocity({ top: '800px' }, { duration: 2000, loop: true})
                     target_is_hit = false;
                 }
                 $(this).remove();
