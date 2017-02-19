@@ -2,17 +2,19 @@ $(function () {
     'use strict'; // Start of use strict
 
     var main_container = $('#main-container');
-    var cannon = $('.cannon');
+    var cannon = $('.cannon').hide();
 
     // FIXME: should only show elements after loading is finished
     // FIXME: Sync cannon barrel and cannon ball initial starting point
 
-    // set cannon's starting position and pivot point
+    cannon.css({'transform-origin': 'left'});
     cannon.css({'transform' : 'rotate(-45deg)'});
     cannon.css({'position': 'absolute',
-                        'left': '0',
-                        'top': ($(window).height() - cannon.width())});
+                        'left': '0', 'top': ($(window).height() - cannon.width())});
     cannon.show();
+
+    var target = $( '<div/>', {class: 'target'}).appendTo(main_container);
+    target.velocity({ top: '800px' }, { duration: 2000, loop: true})
 
     var center_x    = 0;
     var center_y    = 0;
@@ -20,12 +22,10 @@ $(function () {
     var theta       = 0;    // radians
     var degrees     = 0;
     var gravity     = 9.81;
+    var score       = 0;
+    var target_is_hit = false;
 
     function fire_cannon(fire_event) {
-        var cannon_ball = $('.cannon-ball');
-        var div = $("<div />");
-        div.attr({class: 'cannon-ball'});
-
         var event_x     = fire_event.pageX;
         var event_y     = $(window).height() - fire_event.pageY;
         var radians     = Math.atan2( event_y, event_x );
@@ -35,27 +35,39 @@ $(function () {
         var x           = 0;
         var y           = $(window).height();
 
-        div.css({top: y, left: x}); // TODO: Why am I having to hide a random div behind the cannon?
-        main_container.append(div);
-
-        // TODO: Use Velocity.js for animation?
-        cannon_ball.css({ fontSize: 0 }).animate({
-            fontSize: 45
+        var cannon_ball = $( '<div/>', {class: 'cannon-ball'}).appendTo(main_container);
+        cannon_ball.velocity({
+           fontSize: 0
         },{
-            duration: 5000,
+            duration: 2000,
             easing: "swing",
-            step: function(){
+            progress: function(){
                 time = time + .15;
                 x = (v_x0*time);
                 y = (((v_y0*time)) - (.5*gravity*(Math.pow(time, 2))));
                 // Forgive the magic number for the offset
                 $(this).css({ left: x - 100, top: $(window).height() - y });
+                var hit_target = $(this).collision('.target');
+                if ( hit_target.length > 0 && !target_is_hit ) {
+                    target_is_hit = true;
+                    ++score;
+                    $('.score').text(score);
+                    hit_target.velocity('stop')
+                        .velocity({rotateX: '360deg'})
+                        .velocity("fadeOut");
+                }
+
             },
             complete: function() {
+                if ( target_is_hit ) {
+                    $('.target').remove();
+                    var target = $('<div/>', {class:'target'}).appendTo(main_container);
+                    target.velocity({ top: '800px' }, { duration: 2000, loop: true})
+                    target_is_hit = false;
+                }
                 $(this).remove();
             }
         });
-        main_container.removeClass(div);
     }
 
     // returns theta in radians
@@ -79,30 +91,19 @@ $(function () {
         degrees = degree;
         rotate_cannon(degree);
         theta = radians;
-        var pageCoords = event.pageX + ', ' + event.pageY;
-        var clientCoords = event.clientX + ', ' + event.clientY;
-        $('#coords').text('( pageX, pageY ) : ' + pageCoords
-            + ' ( clientX, clientY ) : ' + clientCoords);
     }
 
-    // only moves the box when the mouse is held down
-    $('html').mousemove(function () {
-        $(document).mousemove(mousemoved);
-    }).mouseup(function () {
-        $(document).unbind();
-    });
 
-
-    // disables scrolling by arrow keys
+    // disables scrolling by arrow keys and page up/down keys
     // TODO: comment this section out when debugging cannon balls
     // TODO: also comment out body & html sections in main.sass (lines 4-9)
-    window.addEventListener("keydown", function(e) {
-        //  space, page up, page down and arrow keys:
+    $(window).keydown(function(e) {
         if([32, 33, 34, 37, 38, 39, 40].indexOf(e.keyCode) > -1) {
             e.preventDefault();
         }
     }, false);
 
-    document.addEventListener('click', fire_cannon );
+    $(document).click(fire_cannon);
+    $(document).mousemove(mousemoved);
     $.mobile.loading().hide();
 }); // end of document ready
