@@ -6,7 +6,7 @@ Vagrant.configure("2") do |config|
 
   # set vm options
   config.vm.box = "ubuntu/xenial64"
-  config.vm.hostname = "cannon-dev"
+  config.vm.hostname = "dev"
   config.vm.box_check_update = false
   config.vm.synced_folder ".", "/vagrant"
 
@@ -14,6 +14,7 @@ Vagrant.configure("2") do |config|
   config.vm.provider "virtualbox" do |vb|
     vb.gui = false
     vb.memory = "1024"
+    vb.name = "cannon-dev"
   end
 
   # set vm provioner
