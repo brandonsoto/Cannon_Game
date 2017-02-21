@@ -16,3 +16,5 @@ node_modules
 
 ## vagrant files ##
 .vagrant/
+
+*.log
