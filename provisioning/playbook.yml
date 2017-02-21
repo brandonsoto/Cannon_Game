@@ -1,0 +1,27 @@
+---
+- hosts: all
+  become: yes
+  become_user: root
+
+  roles:
+    - nodejs
+    - google-chrome
+
+#TODO: these tasks should be placed into a role
+  tasks:
+    - name: Upgrade apt packages
+      apt: 
+        upgrade: dist
+
+    - name: Install dev apt packages
+      apt: name={{item}} update_cache=true state=latest
+      with_items:
+        - git
+        - ruby-dev
+        - xauth
+
+    - name: Install gulp
+      npm:
+        name: gulp
+        global: yes
+        state: latest
