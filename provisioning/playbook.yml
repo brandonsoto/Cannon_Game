@@ -5,6 +5,7 @@
   vars_files:
      - group_vars/main.yml
   roles:
+     # TODO(brandon): is there a dynamic way to use chrome and nodejs roles?
     - cmprescott.chrome
     - geerlingguy.nodejs
     - development
