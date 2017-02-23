@@ -7,6 +7,10 @@ A game where you shoot a canon and enjoy the ensuing chaos.
 
 ## How to Build Project
 
+There are two options for building and developing the project. Feel free to use either approach. Please keep in mind that `browserSync` is pretty slow when running from the Vagrant VM.
+
+#### Local Machine Setup
+
 ```bash
 # install necessary packages (Ubuntu 16.04)
 sudo apt-get update
@@ -24,6 +28,27 @@ npm install
 # any changes to the code will now be automatically validated and reloaded in the browser
 gulp dev
 ```
+
+#### Vagrant
+
+```bash
+cd project-directory
+
+# set up and connect to vagrant VM
+vagrant up
+vagrant ssh
+
+# go to shared folder
+cd /vagrant
+
+# install local project packages
+npm install
+
+# builds the project
+# any changes to the code will now be automatically validated and reloaded in the browser
+gulp dev
+```
+
 
 ## Authors
 - Matt Moore
