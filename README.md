@@ -9,7 +9,7 @@ A game where you shoot a canon and enjoy the ensuing chaos.
 
 There are two options for building and developing the project. Feel free to use either approach. Please keep in mind that `browserSync` is pretty slow when running from the Vagrant VM.
 
-#### Local Machine Setup
+#### Local Machine
 
 ```bash
 # install necessary packages (Ubuntu 16.04)
