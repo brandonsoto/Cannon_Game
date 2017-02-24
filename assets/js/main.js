@@ -35,6 +35,8 @@ $(function () {
         var x           = 0;
         var y           = $(window).height();
 
+        $('#cannon-sound')[0].play();
+
         var cannon_ball = $( '<div/>', {class: 'cannon-ball'}).appendTo(main_container);
         cannon_ball.velocity({
            fontSize: 0
@@ -49,6 +51,7 @@ $(function () {
                 $(this).css({ left: x - 100, top: $(window).height() - y });
                 var hit_target = $(this).collision('.target');
                 if ( hit_target.length > 0 && !target_is_hit ) {
+                    $('#boop-sound')[0].play();
                     target_is_hit = true;
                     ++score;
                     $('.score').text(score);
@@ -107,3 +110,4 @@ $(function () {
     $(document).mousemove(mousemoved);
     $.mobile.loading().hide();
 }); // end of document ready
+
