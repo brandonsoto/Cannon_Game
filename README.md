@@ -38,11 +38,8 @@ cd project-directory
 vagrant up
 vagrant ssh
 
-# go to shared folder
+# go to shared project folder
 cd /vagrant
-
-# install local project packages
-npm install
 
 # builds the project
 # any changes to the code will now be automatically validated and reloaded in the browser
