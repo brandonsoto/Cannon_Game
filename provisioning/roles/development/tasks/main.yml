@@ -1,15 +1,29 @@
---- 
-- 
-  apt: update_cache=yes
+---
+-
   name: "Update apt caches"
-- 
-  apt: 
-    upgrade: dist
+  apt: update_cache=yes
+
+-
   name: "Upgrade apt packages"
-- 
-  apt: "name={{item}} update_cache=true state=latest"
-  name: "Install dev apt packages"
-  with_items: 
+  apt:
+    upgrade: dist
+
+-
+  name: Install dev apt packages
+  apt:
+    name: "{{item}}"
+    update_cache: true
+    state: "latest"
+  with_items:
     - git
     - ruby-dev
     - xauth
+-
+  name: Delete node_modules/ if it exists
+  file:
+    path: /vagrant/node_modules/
+    state: absent
+
+-
+  name: Install packages from package.json
+  npm: path="/vagrant/"
