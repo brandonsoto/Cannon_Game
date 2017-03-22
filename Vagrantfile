@@ -15,7 +15,7 @@ Vagrant.configure("2") do |config|
   config.vm.provider "virtualbox" do |vb|
     vb.gui = false
     vb.cpus = "2"
-    vb.memory = "4096"
+    vb.memory = "2048"
     vb.name = "cannon-dev"
   end
 
