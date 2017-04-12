@@ -6,7 +6,7 @@ $(function() {
 
     // FIXME: Sync cannon barrel and cannon ball initial starting point
 
-    var cannon = $('<img/>', { class: 'cannon', src: "../../assets/img/simple_cannon.png" }).appendTo(main_container);
+    var cannon = $('<div/>', { class: 'cannon' }).appendTo(main_container);
     cannon.css({ 'transform-origin': 'left' });
     cannon.css({ 'transform': 'rotate(-45deg)' });
     cannon.css({
@@ -16,7 +16,7 @@ $(function() {
     });
     cannon.show();
 
-    var target = $('<img/>', { class: 'target', src: "../../assets/img/target1.png" }).appendTo(main_container);
+    var target = $('<div/>', { class: 'target' }).appendTo(main_container);
     target.velocity({ top: random_top_str(), left: random_left_str() }, { duration: 2000, loop: true })
 
     var center_x = 0;
@@ -52,7 +52,7 @@ $(function() {
 
         $('#cannon-sound')[0].play();
 
-        var cannon_ball = $('<img/>', { class: 'cannon-ball', src: "../../assets/img/cannon_ball.png" }).appendTo(main_container);
+        var cannon_ball = $('<div/>', { class: 'cannon-ball' }).appendTo(main_container);
         cannon_ball.velocity({
             fontSize: 0
         }, {
@@ -79,7 +79,7 @@ $(function() {
             complete: function() {
                 if (target_is_hit) {
                     $('.target').remove();
-                    var target = $('<img/>', { class: 'target', src: "../../assets/img/target1.png" }).appendTo(main_container);
+                    var target = $('<div/>', { class: 'target' }).appendTo(main_container);
                     target.css({
                         'left': random_left_str(),
                         'top': random_top_str()
