@@ -17,7 +17,7 @@ $(function() {
     cannon.show();
 
     var target = $('<img/>', { class: 'target', src: "../../assets/img/target1.png" }).appendTo(main_container);
-    target.velocity({ top: '800px' }, { duration: 2000, loop: true })
+    target.velocity({ top: random_top_str(), left: random_left_str() }, { duration: 2000, loop: true })
 
     var center_x = 0;
     var center_y = 0;
@@ -27,6 +27,18 @@ $(function() {
     var gravity = 9.81;
     var score = 0;
     var target_is_hit = false;
+
+    function random_number(end) {
+        return Math.floor((Math.random() * end));
+    }
+
+    function random_left_str() {
+        return random_number($(window).width()) + "px";
+    }
+
+    function random_top_str() {
+        return random_number($(window).height()) + "px";
+    }
 
     function fire_cannon(fire_event) {
         var event_x = fire_event.pageX;
@@ -68,7 +80,11 @@ $(function() {
                 if (target_is_hit) {
                     $('.target').remove();
                     var target = $('<img/>', { class: 'target', src: "../../assets/img/target1.png" }).appendTo(main_container);
-                    target.velocity({ top: '800px' }, { duration: 2000, loop: true })
+                    target.css({
+                        'left': random_left_str(),
+                        'top': random_top_str(),
+                    });
+                    target.velocity({ top: random_top_str(), left: random_left_str() }, { duration: 2000, loop: true })
                     target_is_hit = false;
                 }
                 $(this).remove();
