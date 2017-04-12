@@ -82,7 +82,7 @@ $(function() {
                     var target = $('<img/>', { class: 'target', src: "../../assets/img/target1.png" }).appendTo(main_container);
                     target.css({
                         'left': random_left_str(),
-                        'top': random_top_str(),
+                        'top': random_top_str()
                     });
                     target.velocity({ top: random_top_str(), left: random_left_str() }, { duration: 2000, loop: true })
                     target_is_hit = false;
