@@ -111,5 +111,4 @@ $(function() {
 
     $(document).click(fire_cannon);
     $(document).mousemove(mousemoved);
-    $.mobile.loading().hide();
 }); // end of document ready
