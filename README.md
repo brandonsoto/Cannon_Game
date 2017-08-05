@@ -5,6 +5,8 @@
 
 A game where you shoot a canon and enjoy the ensuing chaos.
 
+![Cannon](https://github.com/brandonsoto/Cannon_Game/blob/master/cannon.gif)
+
 ## How to Build Project
 
 There are two options for building and developing the project. Feel free to use either approach. Please keep in mind that `browserSync` is pretty slow when running from the Vagrant VM.
@@ -50,4 +52,3 @@ gulp dev
 ## Authors
 - Matt Moore
 - Brandon Soto
-- Josh Rueschenberg
